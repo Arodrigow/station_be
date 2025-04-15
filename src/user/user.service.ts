@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { User, Prisma } from 'generated/prisma';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -7,7 +7,12 @@ export class UserService {
     constructor(private readonly prisma: PrismaService) { }
 
     async createUser(data: Prisma.UserCreateInput): Promise<User> {
-        return this.prisma.user.create({ data });
+        const user = await this.prisma.user.create({data});
+        // Check if user was created successfully
+        if (!user) {
+            throw new BadRequestException('User not created');
+        }
+        return user;
     }
 
     async getAllUser() {
