@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { User, Prisma } from 'generated/prisma';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -19,20 +19,29 @@ export class UserService {
         return this.prisma.user.findMany();
     }
 
-    async getUserById(id: number): Promise<User | null> {
-        return this.prisma.user.findUnique({
+    async getUserById(id: number): Promise<User> {
+        const user = await this.prisma.user.findUnique({
             where: { id },
         });
+        // Check if user exists 
+        if (!user) {
+            throw new NotFoundException('User not found');
+        } 
+
+        return user
     }
+
     async updateUser(id: number, data: Prisma.UserUpdateInput): Promise<User> { 
-        return this.prisma.user.update({
+        return await this.prisma.user.update({
             where: { id },
             data,
         });
     }
+
     async deleteUser(id: number): Promise<User> {       
-        return this.prisma.user.delete({
+        return await this.prisma.user.delete({
             where: { id },
         });
     }
+    
 }
