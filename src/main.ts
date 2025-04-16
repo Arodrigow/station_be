@@ -5,12 +5,45 @@ import {
 } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './utils/errors/all-exceptions.filter';
+import fastifyRateLimit from '@fastify/rate-limit';
+import fastifyHelmet from '@fastify/helmet';
+import fastifyFormbody from '@fastify/formbody';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter()
   );
+
+  // Apply rate limiting
+  await app.register(fastifyRateLimit, {
+    max: 100, // limit each IP to 100 requests
+    timeWindow: '15 minutes',
+  });
+
+  // Apply security headers
+  // Note: fastify-helmet is a wrapper around helmet.js for Fastify
+  await app.register(fastifyHelmet);
+  
+  // Enable CORS
+  // Note: In production, you should specify the allowed origins instead of using '*'
+  app.enableCors({
+    origin: '*', // or '*' in dev
+    credentials: true, // if you're using cookies
+  });
+
+  app.register(fastifyFormbody); // for parsing application/x-www-form-urlencoded
+  app.getHttpAdapter().getInstance().addContentTypeParser('application/json', {
+    parseAs: 'string',
+    bodyLimit: 1_000_000, // 1MB
+  }, (req, body, done) => {
+    try {
+      const parsed = JSON.parse(body as string);
+      done(null, parsed);
+    } catch (err) {
+      done(err, undefined);
+    }
+  });
 
   app.useGlobalFilters(new AllExceptionsFilter());
   await app.listen(process.env.PORT ?? 3000);
