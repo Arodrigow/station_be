@@ -20,7 +20,7 @@ datasource db {
 }
 
 model User {
-  id         Int       @id @default(autoincrement())
+  id         Int       @id @default(autoincrement()) @unique
   email      String    @unique
   first_name String
   last_name  String
@@ -33,7 +33,7 @@ model User {
 }
 
 model Station {
-  id         Int       @id @default(autoincrement())
+  id         Int       @id @default(autoincrement()) @unique
   code       String
   lat        Float
   long       Float
@@ -45,7 +45,7 @@ model Station {
 }
 
 model Reading {
-  id         Int      @id @default(autoincrement())
+  id         Int      @id @default(autoincrement()) @unique
   station    Station  @relation(fields: [stationId], references: [id])
   stationId  Int      @unique
   vaz        Float?

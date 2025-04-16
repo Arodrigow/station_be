@@ -4890,7 +4890,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"User"> | Date | string
     updated_at?: DateTimeFilter<"User"> | Date | string
     stations?: StationListRelationFilter
-  }, "id" | "email">
+  }, "id" | "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -4964,7 +4964,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Station"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     readings?: ReadingListRelationFilter
-  }, "id" | "userId">
+  }, "id" | "id" | "userId">
 
   export type StationOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5055,7 +5055,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"Reading"> | Date | string
     updated_at?: DateTimeFilter<"Reading"> | Date | string
     station?: XOR<StationScalarRelationFilter, StationWhereInput>
-  }, "id" | "stationId">
+  }, "id" | "id" | "stationId">
 
   export type ReadingOrderByWithAggregationInput = {
     id?: SortOrder
