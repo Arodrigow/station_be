@@ -1,7 +1,9 @@
 import { Body, Controller, Delete, Get, Post, Put, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { Prisma } from 'generated/prisma';
+import { Prisma, Role } from 'generated/prisma';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/roles/roles.guard';
+import { Roles } from 'src/auth/roles/roles.decorator';
 
 @Controller('user')
 export class UserController {
@@ -12,7 +14,8 @@ export class UserController {
         return this.userService.createUser(body);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles(Role.USER)
     @Get()
     findAllUsers() {
         return this.userService.getAllUser();
