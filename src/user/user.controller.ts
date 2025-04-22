@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { Prisma, Role } from 'generated/prisma';
+import { Prisma, Role, User } from 'generated/prisma';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/roles/roles.guard';
 import { Roles } from 'src/auth/roles/roles.decorator';
@@ -23,19 +23,31 @@ export class UserController {
 
     @UseGuards(JwtAuthGuard)
     @Get(':id')
-    findUserById(@Body('id') id: number) {
+    findUserById(@Param('id') id: number, @Req() req) {
+        const user = req.user as User;
+        if (user.id !== id) {
+            throw new Error('You are not authorized to view this user');
+        }
         return this.userService.getUserById(id);
     }
 
     @UseGuards(JwtAuthGuard)
     @Put(':id')
-    updateUser(@Body('id') id: number, @Body() body: Prisma.UserUpdateInput) {
+    updateUser(@Param('id') id: number, @Body() body: Prisma.UserUpdateInput, @Req() req) {
+        const user = req.user as User;
+        if (user.id !== id) {
+            throw new Error('You are not authorized to update this user');
+        }
         return this.userService.updateUser(id, body);
     }
-    
+
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
-    deleteUser(@Body('id') id: number) {
+    deleteUser(@Param('id') id: number, @Req() req) {
+        const user = req.user as User;
+        if (user.id !== id) {
+            throw new Error('You are not authorized to delete this user');
+        }
         return this.userService.deleteUser(id);
     }
 }
