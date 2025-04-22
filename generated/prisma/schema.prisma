@@ -34,7 +34,7 @@ model User {
 
 model Station {
   id         Int       @id @unique @default(autoincrement())
-  code       String
+  code       String    @unique
   lat        Float
   long       Float
   user       User?     @relation(fields: [userId], references: [id])

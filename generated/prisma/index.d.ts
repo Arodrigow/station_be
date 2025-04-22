@@ -4953,18 +4953,18 @@ export namespace Prisma {
 
   export type StationWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    code?: string
     userId?: number
     AND?: StationWhereInput | StationWhereInput[]
     OR?: StationWhereInput[]
     NOT?: StationWhereInput | StationWhereInput[]
-    code?: StringFilter<"Station"> | string
     lat?: FloatFilter<"Station"> | number
     long?: FloatFilter<"Station"> | number
     created_at?: DateTimeFilter<"Station"> | Date | string
     updated_at?: DateTimeFilter<"Station"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     readings?: ReadingListRelationFilter
-  }, "id" | "id" | "userId">
+  }, "id" | "id" | "code" | "userId">
 
   export type StationOrderByWithAggregationInput = {
     id?: SortOrder
