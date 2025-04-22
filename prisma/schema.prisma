@@ -37,6 +37,8 @@ model Station {
   code       String    @unique
   lat        Float
   long       Float
+  muni       String
+  estado     String   
   user       User?     @relation(fields: [userId], references: [id])
   userId     Int?      @unique
   readings   Reading[]

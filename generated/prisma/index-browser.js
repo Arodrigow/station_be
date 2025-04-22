@@ -131,6 +131,8 @@ exports.Prisma.StationScalarFieldEnum = {
   code: 'code',
   lat: 'lat',
   long: 'long',
+  muni: 'muni',
+  estado: 'estado',
   userId: 'userId',
   created_at: 'created_at',
   updated_at: 'updated_at'

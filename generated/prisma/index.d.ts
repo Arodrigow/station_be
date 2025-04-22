@@ -2314,6 +2314,8 @@ export namespace Prisma {
     code: string | null
     lat: number | null
     long: number | null
+    muni: string | null
+    estado: string | null
     userId: number | null
     created_at: Date | null
     updated_at: Date | null
@@ -2324,6 +2326,8 @@ export namespace Prisma {
     code: string | null
     lat: number | null
     long: number | null
+    muni: string | null
+    estado: string | null
     userId: number | null
     created_at: Date | null
     updated_at: Date | null
@@ -2334,6 +2338,8 @@ export namespace Prisma {
     code: number
     lat: number
     long: number
+    muni: number
+    estado: number
     userId: number
     created_at: number
     updated_at: number
@@ -2360,6 +2366,8 @@ export namespace Prisma {
     code?: true
     lat?: true
     long?: true
+    muni?: true
+    estado?: true
     userId?: true
     created_at?: true
     updated_at?: true
@@ -2370,6 +2378,8 @@ export namespace Prisma {
     code?: true
     lat?: true
     long?: true
+    muni?: true
+    estado?: true
     userId?: true
     created_at?: true
     updated_at?: true
@@ -2380,6 +2390,8 @@ export namespace Prisma {
     code?: true
     lat?: true
     long?: true
+    muni?: true
+    estado?: true
     userId?: true
     created_at?: true
     updated_at?: true
@@ -2477,6 +2489,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     userId: number | null
     created_at: Date
     updated_at: Date
@@ -2506,6 +2520,8 @@ export namespace Prisma {
     code?: boolean
     lat?: boolean
     long?: boolean
+    muni?: boolean
+    estado?: boolean
     userId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -2519,6 +2535,8 @@ export namespace Prisma {
     code?: boolean
     lat?: boolean
     long?: boolean
+    muni?: boolean
+    estado?: boolean
     userId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -2530,6 +2548,8 @@ export namespace Prisma {
     code?: boolean
     lat?: boolean
     long?: boolean
+    muni?: boolean
+    estado?: boolean
     userId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -2541,12 +2561,14 @@ export namespace Prisma {
     code?: boolean
     lat?: boolean
     long?: boolean
+    muni?: boolean
+    estado?: boolean
     userId?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type StationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "lat" | "long" | "userId" | "created_at" | "updated_at", ExtArgs["result"]["station"]>
+  export type StationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "lat" | "long" | "muni" | "estado" | "userId" | "created_at" | "updated_at", ExtArgs["result"]["station"]>
   export type StationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Station$userArgs<ExtArgs>
     readings?: boolean | Station$readingsArgs<ExtArgs>
@@ -2570,6 +2592,8 @@ export namespace Prisma {
       code: string
       lat: number
       long: number
+      muni: string
+      estado: string
       userId: number | null
       created_at: Date
       updated_at: Date
@@ -3002,6 +3026,8 @@ export namespace Prisma {
     readonly code: FieldRef<"Station", 'String'>
     readonly lat: FieldRef<"Station", 'Float'>
     readonly long: FieldRef<"Station", 'Float'>
+    readonly muni: FieldRef<"Station", 'String'>
+    readonly estado: FieldRef<"Station", 'String'>
     readonly userId: FieldRef<"Station", 'Int'>
     readonly created_at: FieldRef<"Station", 'DateTime'>
     readonly updated_at: FieldRef<"Station", 'DateTime'>
@@ -4759,6 +4785,8 @@ export namespace Prisma {
     code: 'code',
     lat: 'lat',
     long: 'long',
+    muni: 'muni',
+    estado: 'estado',
     userId: 'userId',
     created_at: 'created_at',
     updated_at: 'updated_at'
@@ -4932,6 +4960,8 @@ export namespace Prisma {
     code?: StringFilter<"Station"> | string
     lat?: FloatFilter<"Station"> | number
     long?: FloatFilter<"Station"> | number
+    muni?: StringFilter<"Station"> | string
+    estado?: StringFilter<"Station"> | string
     userId?: IntNullableFilter<"Station"> | number | null
     created_at?: DateTimeFilter<"Station"> | Date | string
     updated_at?: DateTimeFilter<"Station"> | Date | string
@@ -4944,6 +4974,8 @@ export namespace Prisma {
     code?: SortOrder
     lat?: SortOrder
     long?: SortOrder
+    muni?: SortOrder
+    estado?: SortOrder
     userId?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4960,6 +4992,8 @@ export namespace Prisma {
     NOT?: StationWhereInput | StationWhereInput[]
     lat?: FloatFilter<"Station"> | number
     long?: FloatFilter<"Station"> | number
+    muni?: StringFilter<"Station"> | string
+    estado?: StringFilter<"Station"> | string
     created_at?: DateTimeFilter<"Station"> | Date | string
     updated_at?: DateTimeFilter<"Station"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -4971,6 +5005,8 @@ export namespace Prisma {
     code?: SortOrder
     lat?: SortOrder
     long?: SortOrder
+    muni?: SortOrder
+    estado?: SortOrder
     userId?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4989,6 +5025,8 @@ export namespace Prisma {
     code?: StringWithAggregatesFilter<"Station"> | string
     lat?: FloatWithAggregatesFilter<"Station"> | number
     long?: FloatWithAggregatesFilter<"Station"> | number
+    muni?: StringWithAggregatesFilter<"Station"> | string
+    estado?: StringWithAggregatesFilter<"Station"> | string
     userId?: IntNullableWithAggregatesFilter<"Station"> | number | null
     created_at?: DateTimeWithAggregatesFilter<"Station"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Station"> | Date | string
@@ -5190,6 +5228,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     created_at?: Date | string
     updated_at?: Date | string
     user?: UserCreateNestedOneWithoutStationsInput
@@ -5201,6 +5241,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     userId?: number | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -5211,6 +5253,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutStationsNestedInput
@@ -5222,6 +5266,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5233,6 +5279,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     userId?: number | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -5242,6 +5290,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5251,6 +5301,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5579,6 +5631,8 @@ export namespace Prisma {
     code?: SortOrder
     lat?: SortOrder
     long?: SortOrder
+    muni?: SortOrder
+    estado?: SortOrder
     userId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5596,6 +5650,8 @@ export namespace Prisma {
     code?: SortOrder
     lat?: SortOrder
     long?: SortOrder
+    muni?: SortOrder
+    estado?: SortOrder
     userId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5606,6 +5662,8 @@ export namespace Prisma {
     code?: SortOrder
     lat?: SortOrder
     long?: SortOrder
+    muni?: SortOrder
+    estado?: SortOrder
     userId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -6111,6 +6169,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     created_at?: Date | string
     updated_at?: Date | string
     readings?: ReadingCreateNestedManyWithoutStationInput
@@ -6121,6 +6181,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     created_at?: Date | string
     updated_at?: Date | string
     readings?: ReadingUncheckedCreateNestedManyWithoutStationInput
@@ -6159,6 +6221,8 @@ export namespace Prisma {
     code?: StringFilter<"Station"> | string
     lat?: FloatFilter<"Station"> | number
     long?: FloatFilter<"Station"> | number
+    muni?: StringFilter<"Station"> | string
+    estado?: StringFilter<"Station"> | string
     userId?: IntNullableFilter<"Station"> | number | null
     created_at?: DateTimeFilter<"Station"> | Date | string
     updated_at?: DateTimeFilter<"Station"> | Date | string
@@ -6309,6 +6373,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     created_at?: Date | string
     updated_at?: Date | string
     user?: UserCreateNestedOneWithoutStationsInput
@@ -6319,6 +6385,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     userId?: number | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -6344,6 +6412,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutStationsNestedInput
@@ -6354,6 +6424,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6364,6 +6436,8 @@ export namespace Prisma {
     code: string
     lat: number
     long: number
+    muni: string
+    estado: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -6372,6 +6446,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     readings?: ReadingUpdateManyWithoutStationNestedInput
@@ -6382,6 +6458,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     readings?: ReadingUncheckedUpdateManyWithoutStationNestedInput
@@ -6392,6 +6470,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     lat?: FloatFieldUpdateOperationsInput | number
     long?: FloatFieldUpdateOperationsInput | number
+    muni?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
