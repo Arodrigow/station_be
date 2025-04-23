@@ -135,6 +135,8 @@ exports.Prisma.StationScalarFieldEnum = {
   muni: 'muni',
   estado: 'estado',
   userId: 'userId',
+  role: 'role',
+  token: 'token',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -145,7 +147,7 @@ exports.Prisma.ReadingScalarFieldEnum = {
   vaz: 'vaz',
   prec: 'prec',
   lux: 'lux',
-  irr: 'irr',
+  irr_lux: 'irr_lux',
   temp: 'temp',
   pres: 'pres',
   umi: 'umi',
@@ -153,6 +155,7 @@ exports.Prisma.ReadingScalarFieldEnum = {
   v_gen: 'v_gen',
   a_gen: 'a_gen',
   w_gen: 'w_gen',
+  irr_gen: 'irr_gen',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -168,7 +171,8 @@ exports.Prisma.NullsOrder = {
 };
 exports.Role = exports.$Enums.Role = {
   USER: 'USER',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
+  STATION: 'STATION'
 };
 
 exports.Prisma.ModelName = {

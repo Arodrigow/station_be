@@ -54,7 +54,7 @@ model Reading {
   vaz        Float?
   prec       Float?
   lux        Float?
-  irr        Float?
+  irr_lux    Float?
   temp       Float?
   pres       Float?
   umi        Float?
@@ -62,6 +62,7 @@ model Reading {
   v_gen      Float?
   a_gen      Float?
   w_gen      Float?
+  irr_gen    Float?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
@@ -69,4 +70,5 @@ model Reading {
 enum Role {
   USER
   ADMIN
+  STATION
 }

@@ -35,7 +35,8 @@ export type Reading = $Result.DefaultSelection<Prisma.$ReadingPayload>
 export namespace $Enums {
   export const Role: {
   USER: 'USER',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
+  STATION: 'STATION'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -2330,6 +2331,8 @@ export namespace Prisma {
     muni: string | null
     estado: string | null
     userId: number | null
+    role: $Enums.Role | null
+    token: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -2342,6 +2345,8 @@ export namespace Prisma {
     muni: string | null
     estado: string | null
     userId: number | null
+    role: $Enums.Role | null
+    token: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -2354,6 +2359,8 @@ export namespace Prisma {
     muni: number
     estado: number
     userId: number
+    role: number
+    token: number
     created_at: number
     updated_at: number
     _all: number
@@ -2382,6 +2389,8 @@ export namespace Prisma {
     muni?: true
     estado?: true
     userId?: true
+    role?: true
+    token?: true
     created_at?: true
     updated_at?: true
   }
@@ -2394,6 +2403,8 @@ export namespace Prisma {
     muni?: true
     estado?: true
     userId?: true
+    role?: true
+    token?: true
     created_at?: true
     updated_at?: true
   }
@@ -2406,6 +2417,8 @@ export namespace Prisma {
     muni?: true
     estado?: true
     userId?: true
+    role?: true
+    token?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -2505,6 +2518,8 @@ export namespace Prisma {
     muni: string
     estado: string
     userId: number | null
+    role: $Enums.Role
+    token: string | null
     created_at: Date
     updated_at: Date
     _count: StationCountAggregateOutputType | null
@@ -2536,6 +2551,8 @@ export namespace Prisma {
     muni?: boolean
     estado?: boolean
     userId?: boolean
+    role?: boolean
+    token?: boolean
     created_at?: boolean
     updated_at?: boolean
     user?: boolean | Station$userArgs<ExtArgs>
@@ -2551,6 +2568,8 @@ export namespace Prisma {
     muni?: boolean
     estado?: boolean
     userId?: boolean
+    role?: boolean
+    token?: boolean
     created_at?: boolean
     updated_at?: boolean
     user?: boolean | Station$userArgs<ExtArgs>
@@ -2564,6 +2583,8 @@ export namespace Prisma {
     muni?: boolean
     estado?: boolean
     userId?: boolean
+    role?: boolean
+    token?: boolean
     created_at?: boolean
     updated_at?: boolean
     user?: boolean | Station$userArgs<ExtArgs>
@@ -2577,11 +2598,13 @@ export namespace Prisma {
     muni?: boolean
     estado?: boolean
     userId?: boolean
+    role?: boolean
+    token?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type StationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "lat" | "long" | "muni" | "estado" | "userId" | "created_at" | "updated_at", ExtArgs["result"]["station"]>
+  export type StationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "lat" | "long" | "muni" | "estado" | "userId" | "role" | "token" | "created_at" | "updated_at", ExtArgs["result"]["station"]>
   export type StationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Station$userArgs<ExtArgs>
     readings?: boolean | Station$readingsArgs<ExtArgs>
@@ -2608,6 +2631,8 @@ export namespace Prisma {
       muni: string
       estado: string
       userId: number | null
+      role: $Enums.Role
+      token: string | null
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["station"]>
@@ -3042,6 +3067,8 @@ export namespace Prisma {
     readonly muni: FieldRef<"Station", 'String'>
     readonly estado: FieldRef<"Station", 'String'>
     readonly userId: FieldRef<"Station", 'Int'>
+    readonly role: FieldRef<"Station", 'Role'>
+    readonly token: FieldRef<"Station", 'String'>
     readonly created_at: FieldRef<"Station", 'DateTime'>
     readonly updated_at: FieldRef<"Station", 'DateTime'>
   }
@@ -3517,7 +3544,7 @@ export namespace Prisma {
     vaz: number | null
     prec: number | null
     lux: number | null
-    irr: number | null
+    irr_lux: number | null
     temp: number | null
     pres: number | null
     umi: number | null
@@ -3525,6 +3552,7 @@ export namespace Prisma {
     v_gen: number | null
     a_gen: number | null
     w_gen: number | null
+    irr_gen: number | null
   }
 
   export type ReadingSumAggregateOutputType = {
@@ -3533,7 +3561,7 @@ export namespace Prisma {
     vaz: number | null
     prec: number | null
     lux: number | null
-    irr: number | null
+    irr_lux: number | null
     temp: number | null
     pres: number | null
     umi: number | null
@@ -3541,6 +3569,7 @@ export namespace Prisma {
     v_gen: number | null
     a_gen: number | null
     w_gen: number | null
+    irr_gen: number | null
   }
 
   export type ReadingMinAggregateOutputType = {
@@ -3549,7 +3578,7 @@ export namespace Prisma {
     vaz: number | null
     prec: number | null
     lux: number | null
-    irr: number | null
+    irr_lux: number | null
     temp: number | null
     pres: number | null
     umi: number | null
@@ -3557,6 +3586,7 @@ export namespace Prisma {
     v_gen: number | null
     a_gen: number | null
     w_gen: number | null
+    irr_gen: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -3567,7 +3597,7 @@ export namespace Prisma {
     vaz: number | null
     prec: number | null
     lux: number | null
-    irr: number | null
+    irr_lux: number | null
     temp: number | null
     pres: number | null
     umi: number | null
@@ -3575,6 +3605,7 @@ export namespace Prisma {
     v_gen: number | null
     a_gen: number | null
     w_gen: number | null
+    irr_gen: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -3585,7 +3616,7 @@ export namespace Prisma {
     vaz: number
     prec: number
     lux: number
-    irr: number
+    irr_lux: number
     temp: number
     pres: number
     umi: number
@@ -3593,6 +3624,7 @@ export namespace Prisma {
     v_gen: number
     a_gen: number
     w_gen: number
+    irr_gen: number
     created_at: number
     updated_at: number
     _all: number
@@ -3605,7 +3637,7 @@ export namespace Prisma {
     vaz?: true
     prec?: true
     lux?: true
-    irr?: true
+    irr_lux?: true
     temp?: true
     pres?: true
     umi?: true
@@ -3613,6 +3645,7 @@ export namespace Prisma {
     v_gen?: true
     a_gen?: true
     w_gen?: true
+    irr_gen?: true
   }
 
   export type ReadingSumAggregateInputType = {
@@ -3621,7 +3654,7 @@ export namespace Prisma {
     vaz?: true
     prec?: true
     lux?: true
-    irr?: true
+    irr_lux?: true
     temp?: true
     pres?: true
     umi?: true
@@ -3629,6 +3662,7 @@ export namespace Prisma {
     v_gen?: true
     a_gen?: true
     w_gen?: true
+    irr_gen?: true
   }
 
   export type ReadingMinAggregateInputType = {
@@ -3637,7 +3671,7 @@ export namespace Prisma {
     vaz?: true
     prec?: true
     lux?: true
-    irr?: true
+    irr_lux?: true
     temp?: true
     pres?: true
     umi?: true
@@ -3645,6 +3679,7 @@ export namespace Prisma {
     v_gen?: true
     a_gen?: true
     w_gen?: true
+    irr_gen?: true
     created_at?: true
     updated_at?: true
   }
@@ -3655,7 +3690,7 @@ export namespace Prisma {
     vaz?: true
     prec?: true
     lux?: true
-    irr?: true
+    irr_lux?: true
     temp?: true
     pres?: true
     umi?: true
@@ -3663,6 +3698,7 @@ export namespace Prisma {
     v_gen?: true
     a_gen?: true
     w_gen?: true
+    irr_gen?: true
     created_at?: true
     updated_at?: true
   }
@@ -3673,7 +3709,7 @@ export namespace Prisma {
     vaz?: true
     prec?: true
     lux?: true
-    irr?: true
+    irr_lux?: true
     temp?: true
     pres?: true
     umi?: true
@@ -3681,6 +3717,7 @@ export namespace Prisma {
     v_gen?: true
     a_gen?: true
     w_gen?: true
+    irr_gen?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -3778,7 +3815,7 @@ export namespace Prisma {
     vaz: number | null
     prec: number | null
     lux: number | null
-    irr: number | null
+    irr_lux: number | null
     temp: number | null
     pres: number | null
     umi: number | null
@@ -3786,6 +3823,7 @@ export namespace Prisma {
     v_gen: number | null
     a_gen: number | null
     w_gen: number | null
+    irr_gen: number | null
     created_at: Date
     updated_at: Date
     _count: ReadingCountAggregateOutputType | null
@@ -3815,7 +3853,7 @@ export namespace Prisma {
     vaz?: boolean
     prec?: boolean
     lux?: boolean
-    irr?: boolean
+    irr_lux?: boolean
     temp?: boolean
     pres?: boolean
     umi?: boolean
@@ -3823,6 +3861,7 @@ export namespace Prisma {
     v_gen?: boolean
     a_gen?: boolean
     w_gen?: boolean
+    irr_gen?: boolean
     created_at?: boolean
     updated_at?: boolean
     station?: boolean | StationDefaultArgs<ExtArgs>
@@ -3834,7 +3873,7 @@ export namespace Prisma {
     vaz?: boolean
     prec?: boolean
     lux?: boolean
-    irr?: boolean
+    irr_lux?: boolean
     temp?: boolean
     pres?: boolean
     umi?: boolean
@@ -3842,6 +3881,7 @@ export namespace Prisma {
     v_gen?: boolean
     a_gen?: boolean
     w_gen?: boolean
+    irr_gen?: boolean
     created_at?: boolean
     updated_at?: boolean
     station?: boolean | StationDefaultArgs<ExtArgs>
@@ -3853,7 +3893,7 @@ export namespace Prisma {
     vaz?: boolean
     prec?: boolean
     lux?: boolean
-    irr?: boolean
+    irr_lux?: boolean
     temp?: boolean
     pres?: boolean
     umi?: boolean
@@ -3861,6 +3901,7 @@ export namespace Prisma {
     v_gen?: boolean
     a_gen?: boolean
     w_gen?: boolean
+    irr_gen?: boolean
     created_at?: boolean
     updated_at?: boolean
     station?: boolean | StationDefaultArgs<ExtArgs>
@@ -3872,7 +3913,7 @@ export namespace Prisma {
     vaz?: boolean
     prec?: boolean
     lux?: boolean
-    irr?: boolean
+    irr_lux?: boolean
     temp?: boolean
     pres?: boolean
     umi?: boolean
@@ -3880,11 +3921,12 @@ export namespace Prisma {
     v_gen?: boolean
     a_gen?: boolean
     w_gen?: boolean
+    irr_gen?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type ReadingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stationId" | "vaz" | "prec" | "lux" | "irr" | "temp" | "pres" | "umi" | "carga" | "v_gen" | "a_gen" | "w_gen" | "created_at" | "updated_at", ExtArgs["result"]["reading"]>
+  export type ReadingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stationId" | "vaz" | "prec" | "lux" | "irr_lux" | "temp" | "pres" | "umi" | "carga" | "v_gen" | "a_gen" | "w_gen" | "irr_gen" | "created_at" | "updated_at", ExtArgs["result"]["reading"]>
   export type ReadingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     station?: boolean | StationDefaultArgs<ExtArgs>
   }
@@ -3906,7 +3948,7 @@ export namespace Prisma {
       vaz: number | null
       prec: number | null
       lux: number | null
-      irr: number | null
+      irr_lux: number | null
       temp: number | null
       pres: number | null
       umi: number | null
@@ -3914,6 +3956,7 @@ export namespace Prisma {
       v_gen: number | null
       a_gen: number | null
       w_gen: number | null
+      irr_gen: number | null
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["reading"]>
@@ -4345,7 +4388,7 @@ export namespace Prisma {
     readonly vaz: FieldRef<"Reading", 'Float'>
     readonly prec: FieldRef<"Reading", 'Float'>
     readonly lux: FieldRef<"Reading", 'Float'>
-    readonly irr: FieldRef<"Reading", 'Float'>
+    readonly irr_lux: FieldRef<"Reading", 'Float'>
     readonly temp: FieldRef<"Reading", 'Float'>
     readonly pres: FieldRef<"Reading", 'Float'>
     readonly umi: FieldRef<"Reading", 'Float'>
@@ -4353,6 +4396,7 @@ export namespace Prisma {
     readonly v_gen: FieldRef<"Reading", 'Float'>
     readonly a_gen: FieldRef<"Reading", 'Float'>
     readonly w_gen: FieldRef<"Reading", 'Float'>
+    readonly irr_gen: FieldRef<"Reading", 'Float'>
     readonly created_at: FieldRef<"Reading", 'DateTime'>
     readonly updated_at: FieldRef<"Reading", 'DateTime'>
   }
@@ -4802,6 +4846,8 @@ export namespace Prisma {
     muni: 'muni',
     estado: 'estado',
     userId: 'userId',
+    role: 'role',
+    token: 'token',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -4815,7 +4861,7 @@ export namespace Prisma {
     vaz: 'vaz',
     prec: 'prec',
     lux: 'lux',
-    irr: 'irr',
+    irr_lux: 'irr_lux',
     temp: 'temp',
     pres: 'pres',
     umi: 'umi',
@@ -4823,6 +4869,7 @@ export namespace Prisma {
     v_gen: 'v_gen',
     a_gen: 'a_gen',
     w_gen: 'w_gen',
+    irr_gen: 'irr_gen',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -4982,6 +5029,8 @@ export namespace Prisma {
     muni?: StringFilter<"Station"> | string
     estado?: StringFilter<"Station"> | string
     userId?: IntNullableFilter<"Station"> | number | null
+    role?: EnumRoleFilter<"Station"> | $Enums.Role
+    token?: StringNullableFilter<"Station"> | string | null
     created_at?: DateTimeFilter<"Station"> | Date | string
     updated_at?: DateTimeFilter<"Station"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -4996,6 +5045,8 @@ export namespace Prisma {
     muni?: SortOrder
     estado?: SortOrder
     userId?: SortOrderInput | SortOrder
+    role?: SortOrder
+    token?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -5005,7 +5056,7 @@ export namespace Prisma {
   export type StationWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     code?: string
-    userId?: number
+    token?: string
     AND?: StationWhereInput | StationWhereInput[]
     OR?: StationWhereInput[]
     NOT?: StationWhereInput | StationWhereInput[]
@@ -5013,11 +5064,13 @@ export namespace Prisma {
     long?: FloatFilter<"Station"> | number
     muni?: StringFilter<"Station"> | string
     estado?: StringFilter<"Station"> | string
+    userId?: IntNullableFilter<"Station"> | number | null
+    role?: EnumRoleFilter<"Station"> | $Enums.Role
     created_at?: DateTimeFilter<"Station"> | Date | string
     updated_at?: DateTimeFilter<"Station"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     readings?: ReadingListRelationFilter
-  }, "id" | "id" | "code" | "userId">
+  }, "id" | "id" | "code" | "token">
 
   export type StationOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5027,6 +5080,8 @@ export namespace Prisma {
     muni?: SortOrder
     estado?: SortOrder
     userId?: SortOrderInput | SortOrder
+    role?: SortOrder
+    token?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: StationCountOrderByAggregateInput
@@ -5047,6 +5102,8 @@ export namespace Prisma {
     muni?: StringWithAggregatesFilter<"Station"> | string
     estado?: StringWithAggregatesFilter<"Station"> | string
     userId?: IntNullableWithAggregatesFilter<"Station"> | number | null
+    role?: EnumRoleWithAggregatesFilter<"Station"> | $Enums.Role
+    token?: StringNullableWithAggregatesFilter<"Station"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"Station"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Station"> | Date | string
   }
@@ -5060,7 +5117,7 @@ export namespace Prisma {
     vaz?: FloatNullableFilter<"Reading"> | number | null
     prec?: FloatNullableFilter<"Reading"> | number | null
     lux?: FloatNullableFilter<"Reading"> | number | null
-    irr?: FloatNullableFilter<"Reading"> | number | null
+    irr_lux?: FloatNullableFilter<"Reading"> | number | null
     temp?: FloatNullableFilter<"Reading"> | number | null
     pres?: FloatNullableFilter<"Reading"> | number | null
     umi?: FloatNullableFilter<"Reading"> | number | null
@@ -5068,6 +5125,7 @@ export namespace Prisma {
     v_gen?: FloatNullableFilter<"Reading"> | number | null
     a_gen?: FloatNullableFilter<"Reading"> | number | null
     w_gen?: FloatNullableFilter<"Reading"> | number | null
+    irr_gen?: FloatNullableFilter<"Reading"> | number | null
     created_at?: DateTimeFilter<"Reading"> | Date | string
     updated_at?: DateTimeFilter<"Reading"> | Date | string
     station?: XOR<StationScalarRelationFilter, StationWhereInput>
@@ -5079,7 +5137,7 @@ export namespace Prisma {
     vaz?: SortOrderInput | SortOrder
     prec?: SortOrderInput | SortOrder
     lux?: SortOrderInput | SortOrder
-    irr?: SortOrderInput | SortOrder
+    irr_lux?: SortOrderInput | SortOrder
     temp?: SortOrderInput | SortOrder
     pres?: SortOrderInput | SortOrder
     umi?: SortOrderInput | SortOrder
@@ -5087,6 +5145,7 @@ export namespace Prisma {
     v_gen?: SortOrderInput | SortOrder
     a_gen?: SortOrderInput | SortOrder
     w_gen?: SortOrderInput | SortOrder
+    irr_gen?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     station?: StationOrderByWithRelationInput
@@ -5094,14 +5153,14 @@ export namespace Prisma {
 
   export type ReadingWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    stationId?: number
     AND?: ReadingWhereInput | ReadingWhereInput[]
     OR?: ReadingWhereInput[]
     NOT?: ReadingWhereInput | ReadingWhereInput[]
+    stationId?: IntFilter<"Reading"> | number
     vaz?: FloatNullableFilter<"Reading"> | number | null
     prec?: FloatNullableFilter<"Reading"> | number | null
     lux?: FloatNullableFilter<"Reading"> | number | null
-    irr?: FloatNullableFilter<"Reading"> | number | null
+    irr_lux?: FloatNullableFilter<"Reading"> | number | null
     temp?: FloatNullableFilter<"Reading"> | number | null
     pres?: FloatNullableFilter<"Reading"> | number | null
     umi?: FloatNullableFilter<"Reading"> | number | null
@@ -5109,10 +5168,11 @@ export namespace Prisma {
     v_gen?: FloatNullableFilter<"Reading"> | number | null
     a_gen?: FloatNullableFilter<"Reading"> | number | null
     w_gen?: FloatNullableFilter<"Reading"> | number | null
+    irr_gen?: FloatNullableFilter<"Reading"> | number | null
     created_at?: DateTimeFilter<"Reading"> | Date | string
     updated_at?: DateTimeFilter<"Reading"> | Date | string
     station?: XOR<StationScalarRelationFilter, StationWhereInput>
-  }, "id" | "id" | "stationId">
+  }, "id" | "id">
 
   export type ReadingOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5120,7 +5180,7 @@ export namespace Prisma {
     vaz?: SortOrderInput | SortOrder
     prec?: SortOrderInput | SortOrder
     lux?: SortOrderInput | SortOrder
-    irr?: SortOrderInput | SortOrder
+    irr_lux?: SortOrderInput | SortOrder
     temp?: SortOrderInput | SortOrder
     pres?: SortOrderInput | SortOrder
     umi?: SortOrderInput | SortOrder
@@ -5128,6 +5188,7 @@ export namespace Prisma {
     v_gen?: SortOrderInput | SortOrder
     a_gen?: SortOrderInput | SortOrder
     w_gen?: SortOrderInput | SortOrder
+    irr_gen?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: ReadingCountOrderByAggregateInput
@@ -5146,7 +5207,7 @@ export namespace Prisma {
     vaz?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
     prec?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
     lux?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
-    irr?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
+    irr_lux?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
     temp?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
     pres?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
     umi?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
@@ -5154,6 +5215,7 @@ export namespace Prisma {
     v_gen?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
     a_gen?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
     w_gen?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
+    irr_gen?: FloatNullableWithAggregatesFilter<"Reading"> | number | null
     created_at?: DateTimeWithAggregatesFilter<"Reading"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Reading"> | Date | string
   }
@@ -5256,6 +5318,8 @@ export namespace Prisma {
     long: number
     muni: string
     estado: string
+    role?: $Enums.Role
+    token?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     user?: UserCreateNestedOneWithoutStationsInput
@@ -5270,6 +5334,8 @@ export namespace Prisma {
     muni: string
     estado: string
     userId?: number | null
+    role?: $Enums.Role
+    token?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     readings?: ReadingUncheckedCreateNestedManyWithoutStationInput
@@ -5281,6 +5347,8 @@ export namespace Prisma {
     long?: FloatFieldUpdateOperationsInput | number
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutStationsNestedInput
@@ -5295,6 +5363,8 @@ export namespace Prisma {
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     readings?: ReadingUncheckedUpdateManyWithoutStationNestedInput
@@ -5308,6 +5378,8 @@ export namespace Prisma {
     muni: string
     estado: string
     userId?: number | null
+    role?: $Enums.Role
+    token?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -5318,6 +5390,8 @@ export namespace Prisma {
     long?: FloatFieldUpdateOperationsInput | number
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5330,6 +5404,8 @@ export namespace Prisma {
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5338,7 +5414,7 @@ export namespace Prisma {
     vaz?: number | null
     prec?: number | null
     lux?: number | null
-    irr?: number | null
+    irr_lux?: number | null
     temp?: number | null
     pres?: number | null
     umi?: number | null
@@ -5346,6 +5422,7 @@ export namespace Prisma {
     v_gen?: number | null
     a_gen?: number | null
     w_gen?: number | null
+    irr_gen?: number | null
     created_at?: Date | string
     updated_at?: Date | string
     station: StationCreateNestedOneWithoutReadingsInput
@@ -5357,7 +5434,7 @@ export namespace Prisma {
     vaz?: number | null
     prec?: number | null
     lux?: number | null
-    irr?: number | null
+    irr_lux?: number | null
     temp?: number | null
     pres?: number | null
     umi?: number | null
@@ -5365,6 +5442,7 @@ export namespace Prisma {
     v_gen?: number | null
     a_gen?: number | null
     w_gen?: number | null
+    irr_gen?: number | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -5373,7 +5451,7 @@ export namespace Prisma {
     vaz?: NullableFloatFieldUpdateOperationsInput | number | null
     prec?: NullableFloatFieldUpdateOperationsInput | number | null
     lux?: NullableFloatFieldUpdateOperationsInput | number | null
-    irr?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_lux?: NullableFloatFieldUpdateOperationsInput | number | null
     temp?: NullableFloatFieldUpdateOperationsInput | number | null
     pres?: NullableFloatFieldUpdateOperationsInput | number | null
     umi?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -5381,6 +5459,7 @@ export namespace Prisma {
     v_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     a_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     w_gen?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     station?: StationUpdateOneRequiredWithoutReadingsNestedInput
@@ -5392,7 +5471,7 @@ export namespace Prisma {
     vaz?: NullableFloatFieldUpdateOperationsInput | number | null
     prec?: NullableFloatFieldUpdateOperationsInput | number | null
     lux?: NullableFloatFieldUpdateOperationsInput | number | null
-    irr?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_lux?: NullableFloatFieldUpdateOperationsInput | number | null
     temp?: NullableFloatFieldUpdateOperationsInput | number | null
     pres?: NullableFloatFieldUpdateOperationsInput | number | null
     umi?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -5400,6 +5479,7 @@ export namespace Prisma {
     v_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     a_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     w_gen?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5410,7 +5490,7 @@ export namespace Prisma {
     vaz?: number | null
     prec?: number | null
     lux?: number | null
-    irr?: number | null
+    irr_lux?: number | null
     temp?: number | null
     pres?: number | null
     umi?: number | null
@@ -5418,6 +5498,7 @@ export namespace Prisma {
     v_gen?: number | null
     a_gen?: number | null
     w_gen?: number | null
+    irr_gen?: number | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -5426,7 +5507,7 @@ export namespace Prisma {
     vaz?: NullableFloatFieldUpdateOperationsInput | number | null
     prec?: NullableFloatFieldUpdateOperationsInput | number | null
     lux?: NullableFloatFieldUpdateOperationsInput | number | null
-    irr?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_lux?: NullableFloatFieldUpdateOperationsInput | number | null
     temp?: NullableFloatFieldUpdateOperationsInput | number | null
     pres?: NullableFloatFieldUpdateOperationsInput | number | null
     umi?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -5434,6 +5515,7 @@ export namespace Prisma {
     v_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     a_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     w_gen?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5444,7 +5526,7 @@ export namespace Prisma {
     vaz?: NullableFloatFieldUpdateOperationsInput | number | null
     prec?: NullableFloatFieldUpdateOperationsInput | number | null
     lux?: NullableFloatFieldUpdateOperationsInput | number | null
-    irr?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_lux?: NullableFloatFieldUpdateOperationsInput | number | null
     temp?: NullableFloatFieldUpdateOperationsInput | number | null
     pres?: NullableFloatFieldUpdateOperationsInput | number | null
     umi?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -5452,6 +5534,7 @@ export namespace Prisma {
     v_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     a_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     w_gen?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5694,6 +5777,8 @@ export namespace Prisma {
     muni?: SortOrder
     estado?: SortOrder
     userId?: SortOrder
+    role?: SortOrder
+    token?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -5713,6 +5798,8 @@ export namespace Prisma {
     muni?: SortOrder
     estado?: SortOrder
     userId?: SortOrder
+    role?: SortOrder
+    token?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -5725,6 +5812,8 @@ export namespace Prisma {
     muni?: SortOrder
     estado?: SortOrder
     userId?: SortOrder
+    role?: SortOrder
+    token?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -5790,7 +5879,7 @@ export namespace Prisma {
     vaz?: SortOrder
     prec?: SortOrder
     lux?: SortOrder
-    irr?: SortOrder
+    irr_lux?: SortOrder
     temp?: SortOrder
     pres?: SortOrder
     umi?: SortOrder
@@ -5798,6 +5887,7 @@ export namespace Prisma {
     v_gen?: SortOrder
     a_gen?: SortOrder
     w_gen?: SortOrder
+    irr_gen?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -5808,7 +5898,7 @@ export namespace Prisma {
     vaz?: SortOrder
     prec?: SortOrder
     lux?: SortOrder
-    irr?: SortOrder
+    irr_lux?: SortOrder
     temp?: SortOrder
     pres?: SortOrder
     umi?: SortOrder
@@ -5816,6 +5906,7 @@ export namespace Prisma {
     v_gen?: SortOrder
     a_gen?: SortOrder
     w_gen?: SortOrder
+    irr_gen?: SortOrder
   }
 
   export type ReadingMaxOrderByAggregateInput = {
@@ -5824,7 +5915,7 @@ export namespace Prisma {
     vaz?: SortOrder
     prec?: SortOrder
     lux?: SortOrder
-    irr?: SortOrder
+    irr_lux?: SortOrder
     temp?: SortOrder
     pres?: SortOrder
     umi?: SortOrder
@@ -5832,6 +5923,7 @@ export namespace Prisma {
     v_gen?: SortOrder
     a_gen?: SortOrder
     w_gen?: SortOrder
+    irr_gen?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -5842,7 +5934,7 @@ export namespace Prisma {
     vaz?: SortOrder
     prec?: SortOrder
     lux?: SortOrder
-    irr?: SortOrder
+    irr_lux?: SortOrder
     temp?: SortOrder
     pres?: SortOrder
     umi?: SortOrder
@@ -5850,6 +5942,7 @@ export namespace Prisma {
     v_gen?: SortOrder
     a_gen?: SortOrder
     w_gen?: SortOrder
+    irr_gen?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -5860,7 +5953,7 @@ export namespace Prisma {
     vaz?: SortOrder
     prec?: SortOrder
     lux?: SortOrder
-    irr?: SortOrder
+    irr_lux?: SortOrder
     temp?: SortOrder
     pres?: SortOrder
     umi?: SortOrder
@@ -5868,6 +5961,7 @@ export namespace Prisma {
     v_gen?: SortOrder
     a_gen?: SortOrder
     w_gen?: SortOrder
+    irr_gen?: SortOrder
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6266,6 +6360,8 @@ export namespace Prisma {
     long: number
     muni: string
     estado: string
+    role?: $Enums.Role
+    token?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     readings?: ReadingCreateNestedManyWithoutStationInput
@@ -6278,6 +6374,8 @@ export namespace Prisma {
     long: number
     muni: string
     estado: string
+    role?: $Enums.Role
+    token?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     readings?: ReadingUncheckedCreateNestedManyWithoutStationInput
@@ -6319,6 +6417,8 @@ export namespace Prisma {
     muni?: StringFilter<"Station"> | string
     estado?: StringFilter<"Station"> | string
     userId?: IntNullableFilter<"Station"> | number | null
+    role?: EnumRoleFilter<"Station"> | $Enums.Role
+    token?: StringNullableFilter<"Station"> | string | null
     created_at?: DateTimeFilter<"Station"> | Date | string
     updated_at?: DateTimeFilter<"Station"> | Date | string
   }
@@ -6357,7 +6457,7 @@ export namespace Prisma {
     vaz?: number | null
     prec?: number | null
     lux?: number | null
-    irr?: number | null
+    irr_lux?: number | null
     temp?: number | null
     pres?: number | null
     umi?: number | null
@@ -6365,6 +6465,7 @@ export namespace Prisma {
     v_gen?: number | null
     a_gen?: number | null
     w_gen?: number | null
+    irr_gen?: number | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -6374,7 +6475,7 @@ export namespace Prisma {
     vaz?: number | null
     prec?: number | null
     lux?: number | null
-    irr?: number | null
+    irr_lux?: number | null
     temp?: number | null
     pres?: number | null
     umi?: number | null
@@ -6382,6 +6483,7 @@ export namespace Prisma {
     v_gen?: number | null
     a_gen?: number | null
     w_gen?: number | null
+    irr_gen?: number | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -6456,7 +6558,7 @@ export namespace Prisma {
     vaz?: FloatNullableFilter<"Reading"> | number | null
     prec?: FloatNullableFilter<"Reading"> | number | null
     lux?: FloatNullableFilter<"Reading"> | number | null
-    irr?: FloatNullableFilter<"Reading"> | number | null
+    irr_lux?: FloatNullableFilter<"Reading"> | number | null
     temp?: FloatNullableFilter<"Reading"> | number | null
     pres?: FloatNullableFilter<"Reading"> | number | null
     umi?: FloatNullableFilter<"Reading"> | number | null
@@ -6464,6 +6566,7 @@ export namespace Prisma {
     v_gen?: FloatNullableFilter<"Reading"> | number | null
     a_gen?: FloatNullableFilter<"Reading"> | number | null
     w_gen?: FloatNullableFilter<"Reading"> | number | null
+    irr_gen?: FloatNullableFilter<"Reading"> | number | null
     created_at?: DateTimeFilter<"Reading"> | Date | string
     updated_at?: DateTimeFilter<"Reading"> | Date | string
   }
@@ -6474,6 +6577,8 @@ export namespace Prisma {
     long: number
     muni: string
     estado: string
+    role?: $Enums.Role
+    token?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     user?: UserCreateNestedOneWithoutStationsInput
@@ -6487,6 +6592,8 @@ export namespace Prisma {
     muni: string
     estado: string
     userId?: number | null
+    role?: $Enums.Role
+    token?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -6513,6 +6620,8 @@ export namespace Prisma {
     long?: FloatFieldUpdateOperationsInput | number
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutStationsNestedInput
@@ -6526,6 +6635,8 @@ export namespace Prisma {
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6537,6 +6648,8 @@ export namespace Prisma {
     long: number
     muni: string
     estado: string
+    role?: $Enums.Role
+    token?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -6547,6 +6660,8 @@ export namespace Prisma {
     long?: FloatFieldUpdateOperationsInput | number
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     readings?: ReadingUpdateManyWithoutStationNestedInput
@@ -6559,6 +6674,8 @@ export namespace Prisma {
     long?: FloatFieldUpdateOperationsInput | number
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     readings?: ReadingUncheckedUpdateManyWithoutStationNestedInput
@@ -6571,6 +6688,8 @@ export namespace Prisma {
     long?: FloatFieldUpdateOperationsInput | number
     muni?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    token?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6580,7 +6699,7 @@ export namespace Prisma {
     vaz?: number | null
     prec?: number | null
     lux?: number | null
-    irr?: number | null
+    irr_lux?: number | null
     temp?: number | null
     pres?: number | null
     umi?: number | null
@@ -6588,6 +6707,7 @@ export namespace Prisma {
     v_gen?: number | null
     a_gen?: number | null
     w_gen?: number | null
+    irr_gen?: number | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -6596,7 +6716,7 @@ export namespace Prisma {
     vaz?: NullableFloatFieldUpdateOperationsInput | number | null
     prec?: NullableFloatFieldUpdateOperationsInput | number | null
     lux?: NullableFloatFieldUpdateOperationsInput | number | null
-    irr?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_lux?: NullableFloatFieldUpdateOperationsInput | number | null
     temp?: NullableFloatFieldUpdateOperationsInput | number | null
     pres?: NullableFloatFieldUpdateOperationsInput | number | null
     umi?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -6604,6 +6724,7 @@ export namespace Prisma {
     v_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     a_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     w_gen?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6613,7 +6734,7 @@ export namespace Prisma {
     vaz?: NullableFloatFieldUpdateOperationsInput | number | null
     prec?: NullableFloatFieldUpdateOperationsInput | number | null
     lux?: NullableFloatFieldUpdateOperationsInput | number | null
-    irr?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_lux?: NullableFloatFieldUpdateOperationsInput | number | null
     temp?: NullableFloatFieldUpdateOperationsInput | number | null
     pres?: NullableFloatFieldUpdateOperationsInput | number | null
     umi?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -6621,6 +6742,7 @@ export namespace Prisma {
     v_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     a_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     w_gen?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6630,7 +6752,7 @@ export namespace Prisma {
     vaz?: NullableFloatFieldUpdateOperationsInput | number | null
     prec?: NullableFloatFieldUpdateOperationsInput | number | null
     lux?: NullableFloatFieldUpdateOperationsInput | number | null
-    irr?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_lux?: NullableFloatFieldUpdateOperationsInput | number | null
     temp?: NullableFloatFieldUpdateOperationsInput | number | null
     pres?: NullableFloatFieldUpdateOperationsInput | number | null
     umi?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -6638,6 +6760,7 @@ export namespace Prisma {
     v_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     a_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     w_gen?: NullableFloatFieldUpdateOperationsInput | number | null
+    irr_gen?: NullableFloatFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
