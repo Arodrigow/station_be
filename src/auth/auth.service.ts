@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { Role } from 'generated/prisma';
 
 @Injectable()
 export class AuthService {
@@ -22,5 +23,12 @@ export class AuthService {
         return {
             access_token: this.jwtService.sign(payload),
         };
+    }
+
+    async signStation(stationCode: string) {
+        return this.jwtService.sign({
+            sub: stationCode,
+            role: Role.STATION,
+        }, { noTimestamp: true })
     }
 }
