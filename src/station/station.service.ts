@@ -1,3 +1,4 @@
+import { AuthService } from '@/auth/auth.service';
 import { PrismaService } from '@/prisma/prisma.service';
 import { UserService } from '@/user/user.service';
 import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
@@ -7,6 +8,7 @@ import { Station, Prisma, Role } from 'generated/prisma';
 export class StationService {
     constructor(private readonly prisma: PrismaService,
         private readonly userService: UserService,
+        private readonly authService: AuthService,
     ) { }
 
     async createStation(data: Prisma.StationCreateInput, email?: string): Promise<Station> {
@@ -19,6 +21,7 @@ export class StationService {
         }
 
         try {
+            const token = await this.authService.signStation(data.code);
             const station = await this.prisma.station.create({
                 data: {
                     code: data.code,
@@ -26,9 +29,11 @@ export class StationService {
                     long: data.long,
                     muni: data.muni,
                     estado: data.estado,
-                    user: data.user
+                    user: data.user,
+                    token: token,
                 }
             });
+
             return station;
         } catch (err) {
             throw new InternalServerErrorException('Error creating station: ' + err.message);
