@@ -9,6 +9,7 @@ import { Roles } from 'src/auth/roles/roles.decorator';
 export class UserController {
     constructor(private readonly userService: UserService) { }
 
+    //TODO: Only admin can create user, do it before production
     @Post()
     createUser(@Body() body: Prisma.UserCreateInput) {
         return this.userService.createUser(body);
@@ -25,7 +26,7 @@ export class UserController {
     @Get(':id')
     findUserById(@Param('id') id: number, @Req() req) {
         const user = req.user as User;
-        if (user.id !== id) {
+        if (user.id !== id && user.role !== Role.ADMIN) {
             throw new Error('You are not authorized to view this user');
         }
         return this.userService.getUserById(id);
@@ -35,8 +36,8 @@ export class UserController {
     @Put(':id')
     updateUser(@Param('id') id: number, @Body() body: Prisma.UserUpdateInput, @Req() req) {
         const user = req.user as User;
-        if (user.id !== id) {
-            throw new Error('You are not authorized to update this user');
+        if (user.id !== id && user.role !== Role.ADMIN) {
+            throw new Error('You are not authorized to view this user');
         }
         return this.userService.updateUser(id, body);
     }
@@ -45,8 +46,8 @@ export class UserController {
     @Delete(':id')
     deleteUser(@Param('id') id: number, @Req() req) {
         const user = req.user as User;
-        if (user.id !== id) {
-            throw new Error('You are not authorized to delete this user');
+        if (user.id !== id && user.role !== Role.ADMIN) {
+            throw new Error('You are not authorized to view this user');
         }
         return this.userService.deleteUser(id);
     }
