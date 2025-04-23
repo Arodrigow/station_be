@@ -34,25 +34,25 @@ model User {
 }
 
 model Station {
-  id         Int      @id @unique @default(autoincrement())
-  code       String   @unique
+  id         Int       @id @unique @default(autoincrement())
+  code       String    @unique
   lat        Float
   long       Float
   muni       String
   estado     String
-  user       User?    @relation(fields: [userId], references: [id])
+  user       User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
   userId     Int?
   role       Role      @default(STATION)
   readings   Reading[]
-  token      String?  @unique
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  token      String?   @unique
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
 }
 
 model Reading {
   id         Int      @id @unique @default(autoincrement())
-  station    Station  @relation(fields: [stationId], references: [id])
-  stationId  Int      
+  station    Station  @relation(fields: [stationId], references: [id], onDelete: Cascade)
+  stationId  Int
   vaz        Float?
   prec       Float?
   lux        Float?
