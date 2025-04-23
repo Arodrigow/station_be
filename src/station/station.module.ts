@@ -4,8 +4,9 @@ import { StationController } from './station.controller';
 import { UserModule } from '@/user/user.module';
 
 @Module({
-  imports:[UserModule],
+  imports: [UserModule],
   providers: [StationService],
-  controllers: [StationController]
+  controllers: [StationController],
+  exports: [StationService]
 })
-export class StationModule {}
+export class StationModule { }
