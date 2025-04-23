@@ -25,7 +25,6 @@ export class StationController {
 
     @Get(":code")
     getStationByCode(@Param('code') code: string) {
-        console.log(code)
         return this.stationService.getStationByCode(code);
     }
 
@@ -36,15 +35,15 @@ export class StationController {
 
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(Role.ADMIN)
-    @Put(":id")
-    updateStation(@Body('id') id: number, @Body() body: Prisma.StationUpdateInput) {
-        return this.stationService.updateStation(id, body);
+    @Put(":code")
+    updateStation(@Param('code') code: string, @Body() body: Prisma.StationUpdateInput) {
+        return this.stationService.updateStation(code, body);
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Roles(Role.ADMIN)
-    @Delete(":id")
-    deleteStation(@Body('id') id: number) {
-        return this.stationService.deleteStation(id);
+    @Delete(":code")
+    deleteStation(@Param('code') code: string) {
+        return this.stationService.deleteStation(code);
     }
 }

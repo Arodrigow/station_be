@@ -36,67 +36,66 @@ export class StationService {
     }
 
     async getAllStations(): Promise<Station[]> {
-        let stations = await this.prisma.station.findMany({
+        let stations = await this.prisma.station.findMany();
+        return stations
+    }
+
+    async getStationByCode(code: string): Promise<Station> {
+        let station = await this.prisma.station.findUnique({
+            where: { code },
             include: {
                 user: true,
             },
         });
-        stations.forEach(station => {
+        if (station) {
             if (station.user) {
                 station.user.email = "*********"; // Remove email from user object
                 station.user.password = "*********"; // Remove password from user object
                 station.user.role = Role.USER; // Remove role from user object
                 station.user.phone = "*********"; // Remove phone from user object
                 station.user.documento = "*********"; // Remove documento from user object
+
+                return station
             }
+        }
 
-            return station;
-        })
-
-        return stations
-    }
-
-    async getStationByCode(code: string): Promise<Station> {
-        const station = await this.prisma.station.findUnique({
-            where: { code },
-            include: {
-                user: true,
-            },
-        });
-        return this.checkStationExists(station)
+        return this.checkStationExists(station);
     }
 
     async getStationByUserId(userId: number): Promise<Station[]> {
-        const stations = await this.prisma.station.findMany({
+        let stations = await this.prisma.station.findMany({
             where: { userId },
-            include: {
-                user: true,
-            },
         });
-        // Check if station exists
-        return stations;
-    }
 
-    async updateStation(id: number, data: Prisma.StationUpdateInput): Promise<Station> {
-        if (data.code) {
+        return stations
+    }
+   
+    async updateStation(code: string, data: Prisma.StationUpdateInput): Promise<Station> {
+        if (data.code !== code) {
             throw new BadRequestException('Code is not updatable');
         }
 
-        return await this.prisma.station.update({
-            where: { id },
-            data,
-        });
+        try{
+            const station = await this.prisma.station.update({
+                where: { code },
+                data,
+            });
+
+            return station;
+        }catch (error) {
+            throw new InternalServerErrorException('Error updating station: ' + error.message);
+        }
     }
 
-    async deleteStation(id: number): Promise<Station> {
+    async deleteStation(code: string): Promise<Station> {
         const station = await this.prisma.station.delete({
-            where: { id },
+            where: { code },
         });
         // Check if station exists 
         return this.checkStationExists(station);
     }
 
-    async searchStationWithPagination(
+     async searchStationWithPagination(
         page: number = 1,
         limit: number = 10,
         search: string = ''
@@ -115,11 +114,8 @@ export class StationService {
                 },
                 skip,
                 take: Number(limit),
-                include: {
-                    user: true,
-                },
             });
-    
+
             return stations;
         } catch (error) {
             console.error('Search error:', error);
@@ -133,4 +129,5 @@ export class StationService {
         }
         return station;
     }
+
 }
