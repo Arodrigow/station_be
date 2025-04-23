@@ -94,7 +94,7 @@ export class StationService {
 
     async deleteStation(code: string): Promise<Station> {
         const station = await this.prisma.station.delete({
-            where: { code },
+            where: { code },            
         });
         // Check if station exists 
         return this.checkStationExists(station);
@@ -123,7 +123,6 @@ export class StationService {
 
             return stations;
         } catch (error) {
-            console.error('Search error:', error);
             throw new InternalServerErrorException('Error searching stations: ' + error.message);
         }
     }
