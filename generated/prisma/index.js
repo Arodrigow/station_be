@@ -84,6 +84,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -136,6 +139,11 @@ exports.Prisma.ReadingScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
@@ -191,17 +199,17 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": "DATABASE_URL_DEV",
-        "value": "file:./dev.db"
+        "fromEnvVar": "DATABASE_URL",
+        "value": "postgresql://postgres:jfQ5pDXbCrfEZok5@db.mawggkqyvimancaxxxlv.supabase.co:5432/postgres"
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\n// datasource db {\n//   provider = \"postgresql\"\n//   url      = env(\"DATABASE_URL\")\n// }\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL_DEV\")\n}\n\nmodel User {\n  id         Int       @id @unique @default(autoincrement())\n  email      String    @unique\n  first_name String\n  last_name  String?\n  documento  String    @unique\n  password   String\n  phone      String\n  role       Role      @default(USER)\n  stations   Station[]\n  created_at DateTime  @default(now())\n  updated_at DateTime  @updatedAt\n}\n\nmodel Station {\n  id         Int       @id @unique @default(autoincrement())\n  code       String    @unique\n  lat        Float\n  long       Float\n  muni       String\n  estado     String\n  user       User?     @relation(fields: [userId], references: [id], onDelete: SetNull)\n  userId     Int?\n  role       Role      @default(STATION)\n  readings   Reading[]\n  token      String?   @unique\n  created_at DateTime  @default(now())\n  updated_at DateTime  @updatedAt\n}\n\nmodel Reading {\n  id         Int      @id @unique @default(autoincrement())\n  station    Station  @relation(fields: [stationId], references: [id], onDelete: Cascade)\n  stationId  Int\n  vaz        Float?\n  prec       Float?\n  lux        Float?\n  irr_lux    Float?\n  temp       Float?\n  pres       Float?\n  umi        Float?\n  carga      Float?\n  v_gen      Float?\n  a_gen      Float?\n  w_gen      Float?\n  irr_gen    Float?\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n}\n\nenum Role {\n  USER\n  ADMIN\n  STATION\n}\n",
-  "inlineSchemaHash": "d2ec74f485d67262cb7116cdaa55a25afe05ec3451b57bb7d3b2b09e2344e806",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n  // directUrl = env(\"DATABASE_URL\")\n}\n\n// datasource db {\n//   provider = \"sqlite\"\n//   url      = env(\"DATABASE_URL_DEV\")\n// }\n\nmodel User {\n  id         Int       @id @unique @default(autoincrement())\n  email      String    @unique\n  first_name String\n  last_name  String?\n  documento  String    @unique\n  password   String\n  phone      String\n  role       Role      @default(USER)\n  stations   Station[]\n  created_at DateTime  @default(now())\n  updated_at DateTime  @updatedAt\n}\n\nmodel Station {\n  id         Int       @id @unique @default(autoincrement())\n  code       String    @unique\n  lat        Float\n  long       Float\n  muni       String\n  estado     String\n  user       User?     @relation(fields: [userId], references: [id], onDelete: SetNull)\n  userId     Int?\n  role       Role      @default(STATION)\n  readings   Reading[]\n  token      String?   @unique\n  created_at DateTime  @default(now())\n  updated_at DateTime  @updatedAt\n}\n\nmodel Reading {\n  id         Int      @id @unique @default(autoincrement())\n  station    Station  @relation(fields: [stationId], references: [id], onDelete: Cascade)\n  stationId  Int\n  vaz        Float?\n  prec       Float?\n  lux        Float?\n  irr_lux    Float?\n  temp       Float?\n  pres       Float?\n  umi        Float?\n  carga      Float?\n  v_gen      Float?\n  a_gen      Float?\n  w_gen      Float?\n  irr_gen    Float?\n  created_at DateTime @default(now())\n  updated_at DateTime @updatedAt\n}\n\nenum Role {\n  USER\n  ADMIN\n  STATION\n}\n",
+  "inlineSchemaHash": "8221e6a51a3f71968350cf74bdab49f55e30938ec5ad2d48ba41d885bfd7b1d3",
   "copyEngine": true
 }
 
