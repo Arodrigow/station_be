@@ -9,8 +9,8 @@ import { Roles } from 'src/auth/roles/roles.decorator';
 export class UserController {
     constructor(private readonly userService: UserService) { }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles(Role.ADMIN) 
+    // @UseGuards(JwtAuthGuard, RolesGuard)
+    // @Roles(Role.ADMIN) 
     @Post()
     createUser(@Body() body: Prisma.UserCreateInput) {
         return this.userService.createUser(body);
