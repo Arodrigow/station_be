@@ -121,6 +121,7 @@ export class ReadingService {
                 },
                 skip,
                 take: Number(limit),
+                orderBy: {created_at: 'desc'}
             });
 
             return stations;
